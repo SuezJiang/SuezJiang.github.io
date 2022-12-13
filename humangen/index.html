@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="HumanGen: Generating Human Radiance Fields with Explicit Priors">
+    <meta name="author" content="Suyi Jiang,
+                                Haoran Jiang,
+                                Ziyu Wang,
+                                Haimin Luo,
+                                Wenzheng Chen,                                
+                                Lan Xu">
+
+    <title>HumanGen: Generating Human Radiance Fields with Explicit Priors</title>
+    <!-- Bootstrap core CSS -->
+    <!--link href="bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+    <!--    <link rel="icon" href="img/favicon.gif" type="image/gif">-->
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container"></div>
+    <h2>HumanGen: Generating Human Radiance Fields with Explicit Priors</h2>
+        <!-- <h3>ICCV 2021</h3> -->
+           <p class="abstract">3D human generation scheme with detailed geometry and 360◦ realistic free-view rendering.</p>
+    <hr>
+    <p class="authors">
+        <a href="https://suezjiang.github.io/"> Suyi Jiang</a>,
+        <a > Haoran Jiang</a>,
+        <a > Ziyu Wang</a>,
+        <a href="https://haiminluo.github.io/"> Haimin Luo</a>,
+        <a href="https://www.cs.toronto.edu/~wenzheng/"> Wenzheng Chen</a>,
+        <a href="http://xu-lan.com/"> Lan Xu</a>
+    </p>
+    <div class="btn-group" role="group" aria-label="Top menu">
+        <a class="btn btn-primary" href="https://arxiv.org/abs/2212.05321">Paper</a>
+        <a class="btn btn-primary" href="https://suezjiang.github.io/humangen">Code(coming soon)</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <div class="vcontainer">
+            <iframe class='video' src="https://www.youtube.com/embed/hD_d7IB-EIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <hr>
+        <p>
+            Recent years have witnessed the tremendous progress
+            of 3D GANs for generating view-consistent radiance fields
+            with photo-realism. Yet, high-quality generation of human
+            radiance fields remains challenging, partially due to
+            the limited human-related priors adopted in existing methods.
+            We present HumanGen, a novel 3D human generation
+            scheme with detailed geometry and 360◦ realistic free-view
+            rendering. It explicitly marries the 3D human generation
+            with various priors from the 2D generator and 3D reconstructor
+            of humans through the design of “anchor image”.
+            We introduce a hybrid feature representation using the anchor
+            image to bridge the latent space of HumanGen with
+            the existing 2D generator. We then adopt a pronged design
+            to disentangle the generation of geometry and appearance.
+            With the aid of the anchor image, we adapt a 3D reconstructor
+            for fine-grained details synthesis and propose
+            a two-stage blending scheme to boost appearance generation.
+            Extensive experiments demonstrate our effectiveness
+            for state-of-the-art 3D human generation regarding geometry
+            details, texture quality, and free-view performance. Notably,
+            HumanGen can also incorporate various off-the-shelf
+            2D latent editing methods, seamlessly lifting them into 3D.
+        </p>
+    </div>
+
+
+    <div class="section">
+        <h2>Pipeline</h2>
+        <hr>
+        <p>
+            Our key idea in HumanGen is to organically leverage a 2D human generator and a 3D human reconstructor as explicit priors into a 3D GAN-like framework.
+            HumanGen consists of three modules. The hybrid feature module includes anchor image and tri-plane feature generation. The geometry module includes reconstruction prior and SDF adaptation. Texture module includes sphere tracing based volume
+rendering, texture and blending weight fields, and two-stage blending.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/overview_v5.png" style="width:100%; margin-right:-10px; margin-top:-10px;">
+        </div> 
+    </div>
+
+    <div class="section">
+        <h2>Results</h2>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <video src="img/humengen_more_result_compact.mp4" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/humengen_more_result_compact.mp4" type="video/mp4">
+                    </video>
+        </div>
+        <p>
+            Our HumanGen enables photo-realistic human generation with detailed geometry and 360◦ free-view rendering ability, learned from 2D images.
+        </p>
+    </div>
+    
+    <div class="section">
+        <h2>Comparison</h2>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <img src="img/gallery.png" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/comp_part1.mp4" type="video/mp4">
+                    </video>
+                <video width="95%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/comp_part2.mp4" type="video/mp4">
+                    </video>
+        </div>
+        <p>
+            
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Application</h2>
+        <hr>
+        <p>
+            HumanGen maintains the compatibility to existing off-the-shelf 2D
+            editing toolbox based on latent disentanglement. Thus,
+            using the anchor image, we can seamlessly upgrade off-the-shelf
+            2D latent editing methods into our 3D setting.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <img src="img/gallery.png" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_mix.mp4" type="video/mp4">
+                    </video>
+                <p>
+                    1. Pose editing with style mixing. Achieve 3D results with style mixing on 2D images.
+                </p>
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_inverse.mp4" type="video/mp4">
+                    </video>
+                <p>
+                    2. Real image inversion. Real images can be inverted to latent space to generate 3D results.
+                </p>
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_edit.mp4" type="video/mp4">
+                    </video>
+                <p>
+                    3. Edit with latent space. Editing on 2D clothes can be seamlessly upgraded to 3D.
+                </p>
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_clip.mp4" type="video/mp4">
+                    </video>
+                <p>
+                    4. Text-guided generation. 3D generation from 2D text-guided generation.
+                </p>
+        </div>
+        <p>
+            
+        </p>
+    </div>
+
+
+    <!-- <div class="section">
+        <h2>Results</h2>
+        <hr>
+
+        <div class="col justify-content-center text-center">
+            <img src="img/progress.png" style="width:100%; margin-right:-10px; margin-top:10px;">
+
+        <p>
+            Optimization progress. We show results of our fine-tuning (top) and optimizing a <b>NeRF</b> (bottom) with different time periods. Our <b>0-min</b> result refers to the initial output from our network inference. Note that our <b>18-min</b> results are already much better than the <b>215-min</b> NeRF results. PSNRs of the image crops are shown in the figure.
+        </p>
+
+        <div class="col justify-content-center text-center">
+            <img src="img/result.png" style="width:100%; margin-right:-10px; margin-top:10px;">
+
+        <p>
+            Rendering quality comparison. On the left, we show rendering results of our method and concurrent neural rendering methods PixelNeRF, IBRNet by directly running the networks. We show our 15-min fine-tuning results and NeRF's  10.2h-optimization results on the right.
+        </p>
+    </div> -->
+
+    <div class="section">
+        <h2>Related Links</h2>
+        <hr>
+        <p>
+            <!-- <a href="https://suezjiang.github.io/"> Suyi Jiang</a> -->
+            We compare our method with three NeRF-based generation methods <a href="https://stylesdf.github.io/"> StyleSDF</a>, <a href="https://nvlabs.github.io/eg3d/"> EG3D</a>
+            and <a href="http://www.computationalimaging.org/publications/gnarf/"> GNARF</a>.
+            Related 2D GAN method is <a href="https://stylegan-human.github.io/"> StyleGAN-Human</a>.
+            Related reconstruction methods are <a href="https://shunsukesaito.github.io/PIFu/"> PIFu</a> and <a href="https://shunsukesaito.github.io/PIFuHD/"> PIFuHD</a>.
+            
+        </p>
+    </div> 
+
+    <div class="section">
+        <h2>Bibtex</h2>
+        <hr>
+        <div class="bibtexsection">
+            @article{jiang2022humangen,
+                title={HumanGen: Generating Human Radiance Fields with Explicit Priors},
+                author={Suyi, Jiang and Haoran, Jiang and Ziyu, Wang and Haimin, Luo and 
+                    Wenzheng, Chen and Lan, Xu},
+                journal={arXiv preprint arXiv:2212.05321},
+                year={2022}
+              }
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Send feedback and questions to <a href="https://suezjiang.github.io/">Suyi Jiang</a></p>
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
