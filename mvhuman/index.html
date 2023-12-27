@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="MVHuman: Tailoring 2D Diffusion with Multi-view Sampling For Realistic 3D Human Generation">
+    <meta name="author" content="Suyi Jiang,
+                                Haimin Luo,
+                                Haoran Jiang,
+                                Ziyu Wang,
+                                Jingyi Yu,                                
+                                Lan Xu">
+
+    <title>MVHuman: Tailoring 2D Diffusion with Multi-view Sampling For Realistic 3D Human Generation</title>
+    <!-- Bootstrap core CSS -->
+    <!--link href="bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+    <!--    <link rel="icon" href="img/favicon.gif" type="image/gif">-->
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container"></div>
+    <h2>MVHuman: Tailoring 2D Diffusion with Multi-view Sampling For Realistic 3D Human Generation</h2>
+        <!-- <h3>ICCV 2021</h3> -->
+           <p class="abstract"></p>
+    <hr>
+    <p class="authors">
+        <a href="https://suezjiang.github.io/"> Suyi Jiang</a>,
+        <a href="https://haiminluo.github.io/"> Haimin Luo</a>,
+        <a > Haoran Jiang</a>,
+        <a > Ziyu Wang</a>,
+        <a href="http://www.yu-jingyi.com/"> Jingyi Yu</a>,
+        <a href="http://xu-lan.com/"> Lan Xu</a>
+    </p>
+    <div class="btn-group" role="group" aria-label="Top menu">
+        <a class="btn btn-primary" href="https://arxiv.org/abs/2212.05321">Paper</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <!-- <div class="vcontainer">
+            <iframe class='video' src="https://www.youtube.com/embed/sC_-Q5EeYec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> -->
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/gallery.png" style="width:100%; margin-right:-10px; margin-top:-10px;">
+        </div> 
+        <hr>
+        <p>
+            Recent months have witnessed rapid progress in 3D generation based on diffusion models. 
+            Most advances require fine-tuning existing 2D Stable Diffsuions into multi-view settings or tedious distilling operations 
+            and hence fall short of 3D human generation due to the lack of diverse 3D human datasets. 
+            We present an alternative scheme named MVHuman to generate human radiance fields from text guidance, 
+            with consistent multi-view images directly sampled from pre-trained Stable Diffsuions without any fine-tuning or distilling. 
+            Our core is a multi-view sampling strategy to tailor the denoising processes of the pre-trained network for 
+            generating consistent multi-view images. It encompasses view-consistent conditioning, 
+            replacing the original noises with ``consistency-guided noises'', optimizing latent codes, 
+            as well as utilizing cross-view attention layers. With the multi-view images through the sampling process, 
+            we adopt geometry refinement and 3D radiance field generation followed by a subsequent neural blending scheme for free-view rendering.
+             Extensive experiments demonstrate the efficacy of our method, as well as its superiority to state-of-the-art 
+             3D human generation methods.
+        </p>
+    </div>
+
+
+    <div class="section">
+        <h2>Pipeline</h2>
+        <hr>
+        <p>
+            The core of our MVHuman is a novel multi-view sampling process to simultaneously 
+            sample multiple view-consistent images with the aid of a coarse human geometry proxy.
+            Specifically, we construct ``consistency-guided noise'' in sampling steps to gradually denoise the
+             individual initial random noises of multiple views into consistent ones. 
+             With the multi-view sampling above, we carefully generate high-quality human images from multiple view points 
+             which enable reconstructing detailed 3D geometry and generating neural radiance fields
+              followed by a neural blending scheme for free-view rendering. 
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/overview.png" style="width:100%; margin-right:-10px; margin-top:-10px;">
+        </div> 
+    </div>
+
+    <div class="section">
+        <h2>Results</h2>
+        <hr>
+        <p>
+            The generation results of MVHuman, including characters from games/movies, celebrities, and customized humans.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <video src="img/humengen_more_result_compact.mp4" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/more_results.mp4" type="video/mp4">
+                    </video>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Comparison</h2>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <img src="img/gallery.png" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/comparison_clip.mp4" type="video/mp4">
+                </video>
+        </div>
+        <p>
+            
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Application</h2>
+        <hr>
+        <p>
+            Based on a pre-trained 2D stable diffusion model, text-guided editing and LoRA models can be seamlessly integrated into our method.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <!-- <img src="img/gallery.png" style="width:100%; margin-right:-10px; margin-top:-10px;"> -->
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_clip_0.mp4" type="video/mp4">
+                    </video>
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/app_clip_1.mp4" type="video/mp4">
+                    </video>
+        </div>
+        <p>
+            
+        </p>
+    </div>
+
+
+    <!-- <div class="section">
+        <h2>Results</h2>
+        <hr>
+
+        <div class="col justify-content-center text-center">
+            <img src="img/progress.png" style="width:100%; margin-right:-10px; margin-top:10px;">
+
+        <p>
+            Optimization progress. We show results of our fine-tuning (top) and optimizing a <b>NeRF</b> (bottom) with different time periods. Our <b>0-min</b> result refers to the initial output from our network inference. Note that our <b>18-min</b> results are already much better than the <b>215-min</b> NeRF results. PSNRs of the image crops are shown in the figure.
+        </p>
+
+        <div class="col justify-content-center text-center">
+            <img src="img/result.png" style="width:100%; margin-right:-10px; margin-top:10px;">
+
+        <p>
+            Rendering quality comparison. On the left, we show rendering results of our method and concurrent neural rendering methods PixelNeRF, IBRNet by directly running the networks. We show our 15-min fine-tuning results and NeRF's  10.2h-optimization results on the right.
+        </p>
+    </div> -->
+
+    <div class="section">
+        <h2>Social Impact</h2>
+        <hr>
+        <p>
+            When researching generative technologies, we concern about their potential infringements on intellectual property. 
+            There should be heightened legal restrictions on the applications of such technologies.
+             Furthermore, gender and cultural diversity are crucial. 
+             It is necessary for any generative technology to ensure inclusivity and avoid stereotypes.
+              In this paper, all our results are carefully selected based on these principles.
+        </p>
+    </div> 
+
+    <div class="section">
+        <h2>Bibtex</h2>
+        <hr>
+        <div class="bibtexsection">
+            @article{jiang2023mvhuman,
+                title={MVHuman: Tailoring 2D Diffusion with Multi-view Sampling For Realistic 
+                       3D Human Generation},
+                author={Suyi, Jiang and Haimin, Luo and Haoran, Jiang and Ziyu, Wang and 
+                    Jingyi, Yu and Lan, Xu},
+                journal={arXiv preprint},
+                year={2023}
+              }
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Send feedback and questions to <a href="https://suezjiang.github.io/">Suyi Jiang</a></p>
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
